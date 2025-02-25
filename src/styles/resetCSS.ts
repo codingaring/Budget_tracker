@@ -39,7 +39,7 @@ html {
 body {
     line-height: 1;
     font-size: 1.6rem;
-    font-family: 'EBSHMJESaeron';
+    font-family: 'GmarketSansMedium';
 }
 
 article, aside, details, figcaption, figure, 
