@@ -1,37 +1,59 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// The built directory structure
-//
-// ├─┬─┬ dist
-// │ │ └── index.html
-// │ │
-// │ ├─┬ dist-electron
-// │ │ ├── main.js
-// │ │ └── preload.mjs
-// │
-process.env.APP_ROOT = path.join(__dirname, '..');
+const APP_ROOT = path.join(__dirname, '..');
 
-// 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
 export const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL'];
-export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron');
-export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist');
+export const MAIN_DIST = path.join(APP_ROOT, 'dist-electron');
+export const RENDERER_DIST = path.join(APP_ROOT, 'dist');
 
-process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
-  ? path.join(process.env.APP_ROOT, 'public')
-  : RENDERER_DIST;
+process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(APP_ROOT, 'public') : RENDERER_DIST;
 
+// electron window
 let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'coin.png'),
+    width: 1600,
+    height: 1000,
+    frame: false,
+    autoHideMenuBar: true,
+    icon: path.join(APP_ROOT, 'coin.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      nodeIntegration: false,
+      contextIsolation: true,
     },
+  });
+
+  // 창이 닫힐 때 win를 null로 설정
+  win.on('closed', () => {
+    win = null;
+  });
+
+  // 이후 GeneralModule로 분리 예정
+  const windowActions = {
+    minimize: () => win?.minimize(),
+    maximize: () => {
+      if (win?.isMaximized()) {
+        win.unmaximize();
+      } else {
+        win?.maximize();
+      }
+    },
+    close: () => win?.close(),
+  };
+
+  type WindowActionType = keyof typeof windowActions;
+
+  // 단일 IPC 채널에서 액션을 받아서 처리
+  ipcMain.on('appControl', (_, action: WindowActionType) => {
+    if (win && !win.isDestroyed() && windowActions[action]) {
+      windowActions[action]();
+    }
   });
 
   // Test active push message to Renderer-process.
@@ -48,9 +70,6 @@ function createWindow() {
   win.webContents.openDevTools();
 }
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -59,8 +78,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
