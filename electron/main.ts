@@ -17,8 +17,8 @@ let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1600,
-    height: 1000,
+    width: 1400,
+    height: 800,
     frame: false,
     autoHideMenuBar: true,
     icon: path.join(APP_ROOT, 'coin.png'),

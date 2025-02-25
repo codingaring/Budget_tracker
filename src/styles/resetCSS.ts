@@ -32,20 +32,25 @@ html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  background-color: var(--background);
-  color: var(--gray900);
+  height : 100vh;
 }
 
 body {
     line-height: 1;
     font-size: 1.6rem;
     font-family: 'GmarketSansMedium';
-}
+    height : 100%;
+
+    > #root {
+      height : 100%;
+    }
+  }
 
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
 
 ol,
 ul,
