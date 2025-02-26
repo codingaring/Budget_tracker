@@ -6,7 +6,6 @@ export const HomeLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 800px;
   margin: 0 auto;
   gap: 48px;
   padding: 100px 50px;
@@ -17,7 +16,7 @@ export const HomeLayout = styled.div`
 export const LandingCardContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 24px;
 `;
 
 export const LandingCardStyle = styled.div`

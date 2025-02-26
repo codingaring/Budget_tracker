@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { TITLE_BAR_HEIGHT } from '#styles/StyleConstants';
 
 export const TitleBarLayout = styled.div`
   background-color: var(--color-primary);
   display: flex;
   justify-content: right;
-  max-height: ${TITLE_BAR_HEIGHT}px;
+  height: 32px;
   -webkit-app-region: drag;
 `;
 

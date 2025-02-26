@@ -18,7 +18,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font: inherit;
-    vertical-align: baseline;
+    vertical-align: middle;
     box-sizing: border-box;
 }
 
@@ -32,14 +32,13 @@ html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  height : 100vh;
 }
 
 body {
     line-height: 1;
     font-size: 1.6rem;
     font-family: 'GmarketSansMedium';
-    height : 100%;
+    height : 100vh;
 
     > #root {
       height : 100%;
