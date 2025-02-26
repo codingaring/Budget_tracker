@@ -1,4 +1,5 @@
 import { ContainerHeight } from '#styles/BaseLayout.style';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HomeLayout = styled.div`
@@ -70,7 +71,7 @@ export const HomeHeaderStyle = styled.header`
   }
 `;
 
-export const StartButtonStyle = styled.button`
+export const StartButtonStyle = styled(Link)`
   background-color: var(--color-primary);
   color: var(--color-white);
   text-align: center;

@@ -18,7 +18,7 @@ function Home() {
           );
         })}
       </S.LandingCardContainer>
-      <S.StartButtonStyle type="button">시작하기</S.StartButtonStyle>
+      <S.StartButtonStyle to={'/main'}>시작하기</S.StartButtonStyle>
     </S.HomeLayout>
   );
 }
