@@ -1,15 +1,13 @@
 import Category from '#components/Category/Category';
-import { Link } from 'react-router-dom';
 import * as S from './Main.style';
+import { useCategoryStore } from '#stores/categoryStore';
 
 function Main() {
+  const { currentCategory } = useCategoryStore();
   return (
     <S.MainLayout>
       <Category />
-      <S.Body>
-        메인
-        <Link to={'/'}>홈</Link>
-      </S.Body>
+      <S.Body>{currentCategory}</S.Body>
     </S.MainLayout>
   );
 }

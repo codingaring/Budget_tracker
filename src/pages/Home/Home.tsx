@@ -5,7 +5,7 @@ function Home() {
   return (
     <S.HomeLayout>
       <S.HomeHeaderStyle>
-        <h2>소박한 내 통장의 잔액을 소생시켜보자</h2>
+        <h2>나의 소박한 소비 생활 기록기</h2>
         <h1>소생기</h1>
       </S.HomeHeaderStyle>
       <S.LandingCardContainer>
