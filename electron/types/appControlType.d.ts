@@ -1,1 +1,1 @@
-export type AppControlArgsType = 'minimize' | 'maximize' | 'close';
+export type AppControlArgsType = 'minimize' | 'maximize' | 'close' | 'devtools';
