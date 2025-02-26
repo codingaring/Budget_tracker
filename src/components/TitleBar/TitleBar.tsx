@@ -1,6 +1,6 @@
 import { AppControlOptions } from './AppControlOptions';
 import * as S from './Titlebar.style';
-import { type AppControlArgsType } from '../../../electron/types/appControlType';
+import { type AppControlArgsType } from '#electron/types/appControlType';
 
 function TitleBar() {
   const handleAppControl = (action: AppControlArgsType) => {

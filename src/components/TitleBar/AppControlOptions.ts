@@ -1,7 +1,7 @@
-import { AppControlArgsType } from '../../../electron/types/appControlType';
-import closeIcon from '../../assets/icons/close.svg';
-import maximizeIcon from '../../assets/icons/double-solid-square.svg';
-import minimizeIcon from '../../assets/icons/one-line.svg';
+import { AppControlArgsType } from '#electron/types/appControlType';
+import closeIcon from '#assets/icons/close.svg';
+import maximizeIcon from '#assets/icons/double-solid-square.svg';
+import minimizeIcon from '#assets/icons/one-line.svg';
 
 interface AppControlOptionsType {
   action: AppControlArgsType;

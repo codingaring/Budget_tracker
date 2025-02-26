@@ -1,5 +1,5 @@
+import { ContainerHeight } from '#styles/BaseLayout.style';
 import styled from 'styled-components';
-import { ContainerHeight } from '../../styles/BaseLayout.style';
 
 export const HomeLayout = styled.div`
   display: flex;

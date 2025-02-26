@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TITLE_BAR_HEIGHT } from '../../styles/StyleConstants';
+import { TITLE_BAR_HEIGHT } from '#styles/StyleConstants';
 
 export const TitleBarLayout = styled.div`
   background-color: var(--color-primary);

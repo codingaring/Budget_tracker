@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path, { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import electron from 'vite-plugin-electron/simple';
@@ -27,4 +27,17 @@ export default defineConfig({
           : {},
     }),
   ],
+  resolve: {
+    alias: {
+      '#assets': '/src/assets',
+      '#components': '/src/components',
+      '#constants': '/src/constants',
+      '#pages': '/src/pages',
+      '#styles': '/src/styles',
+      '#hooks': '/src/hooks',
+      '#utils': '/src/utils',
+      '#/': '/src',
+      '#electron': '/electron',
+    },
+  },
 });
