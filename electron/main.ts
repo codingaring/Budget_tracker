@@ -1,6 +1,7 @@
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { app, BrowserWindow, ipcMain } from 'electron';
+import Store from 'electron-store';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -55,6 +56,15 @@ function createWindow() {
     if (win && !win.isDestroyed() && windowActions[action]) {
       windowActions[action]();
     }
+  });
+
+  const store = new Store();
+
+  store.set('categories', ['incomes', 'expense']);
+
+  ipcMain.handle('get-categories', () => {
+    const categories = store.get('categories');
+    return { categories };
   });
 
   /** DEV 환경에서는 Vite 서버로 띄우고, PRODUCT 환경에서는 빌드된 파일 실행 */
